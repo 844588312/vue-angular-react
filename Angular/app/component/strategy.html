@@ -1,0 +1,64 @@
+<div id="page-wrapper" ng-controller="strategyController">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">{{title}}</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <span>推送策略列表</span>
+                    <button type="button"  class="btn btn-info btn-primary" data-toggle="modal" data-target="#addstrategy" v-on:click="addstrategy">增加</button>
+                </div>
+                <div class="panel-body">
+                    <div class="dataTable_wrapper">
+                        <table class="table table-striped table-bordered table-hover" id="dataTables-strategyList">
+                            <thead>
+                                <tr>
+                                    <th>序号</th>
+                                    <th>名称</th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row col-lg-12">
+        <div class="row col-lg-12">
+            <p class="row col-lg-12"><h1>依赖注入</h1></p>
+            <div class="row col-lg-12">依赖注入是一个在组件中给出的替代了硬的组件内的编码它们的依赖关系的软件设计模式。这减轻一个组成部分，从定位的依赖，依赖配置。这有助于使组件可重用，维护和测试。</div>
+            <!-- ng-click的事件函数没有参数时也要括号，否则注册无效，而vue不会 -->
+            <div class="form-group" ng-click="reComputeResult()">
+                <label class="checkbox-inline">
+                    <input type="radio" name="optionsRadiosinline" id="optionsRadios1" value="option1" ng-model='redioValue' checked> 加
+                </label>
+                <label class="checkbox-inline">
+                    <input type="radio" name="optionsRadiosinline" id="optionsRadios2" value="option2" ng-model='redioValue'> 减
+                </label>
+                <label class="checkbox-inline">
+                    <input type="radio" name="optionsRadiosinline" id="optionsRadios3" value="option3" ng-model='redioValue'> 乘
+                </label>
+                <label class="checkbox-inline">
+                    <input type="radio" name="optionsRadiosinline" id="optionsRadios4" value="option4" ng-model='redioValue'> 除
+                </label>
+            </div>
+            <div class="form-group">
+                <label for="firstname" class="col-sm-1 control-label">参数1</label>
+                <div class="col-sm-3">
+                    <input type="number" class="form-control" id="firstname" ng-model='firstNum'>
+                </div>
+                <label for="lastname" class="col-sm-1 control-label">参数2</label>
+                <div class="col-sm-3">
+                    <input type="number" class="form-control" id="lastname" ng-model='secondNum'>
+                </div>
+                <label class="col-sm-3 control-label">结果：{{computeResult}}</label>
+            </div>
+        </div>
+    </div>
+</div>

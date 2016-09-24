@@ -1,0 +1,57 @@
+<div id="page-wrapper" ng-controller="messageListController">
+	<div class="row">
+	    <div class="col-lg-12">
+	        <h1 class="page-header">{{title}}</h1>
+	    </div>
+	</div>
+	<div class="row">
+	    <div class="col-lg-12">
+	        <div class="panel panel-default">
+	            <div class="selectquery">
+	                <label>查询开始时间</label><input type="datetime-local" name="start" v-model="condition.starttime" >&nbsp;&nbsp;&nbsp;&nbsp;<label>查询结束时间</label><input type="datetime-local" name="end" v-model="condition.endtime">&nbsp;&nbsp;&nbsp;&nbsp;
+	                <input type="radio" name="status" id="all" value="" checked="true" v-model="condition.status"><label for="all">全部状态</label>
+	                <input type="radio" name="status" id="success" value="1" v-model="condition.status"><label for="success">成功</label>
+	                <input type="radio" name="status" id="fail" value="0" v-model="condition.status"><label for="fail">失败</label>&nbsp;&nbsp;&nbsp;&nbsp;
+	                <button type="button"  class="btn btn-info btn-primary" v-on:click="getMessageList">提交</button>
+	            </div>
+	                <!-- /.panel-heading -->
+		        <div class="panel-body">
+		            <div class="dataTable_wrapper">
+		                <table class="table table-striped table-bordered table-hover" id="dataTables-msgList">
+		                    <thead>
+		                        <tr>
+		                            <th>序号</th>
+		                            <th>标题</th>
+		                            <th class="content_th">内容</th>
+		                            <th>接收者</th>
+		                            <th>发送方式</th>
+		                            <th>发送时间</th>
+		                            <th>状态</th>
+		                        </tr>
+		                    </thead>
+		                    <tbody>
+		                    	<tr ng-repeat="item in data">
+		                    		<td>{{item.id}}</td>
+		                    		<td>{{item.title}}</td>
+		                    		<td>{{item.content}}</td>
+		                    		<td>{{item.receive}}</td>
+		                    		<td>{{item.type}}</td>
+		                    		<td>{{item.time}}</td>
+		                    		<td>{{item.state}}</td>
+		                    	</tr>
+		                    </tbody>
+		                </table>
+		            </div>
+		        </div>
+	    	</div>
+		</div>
+		<div class="col-lg-12"><button ng-click="$broadcast('myEvent')">父作用域通过事件传播到子作用域计数</button></div>
+		<div class="col-lg-12">父作用域中的samescope：{{samescope}}</div>
+		<div class="col-lg-12" ng-controller='messageListChildController'>
+			<div><span>子作用域计数:{{count}}</span></div>
+			<div>
+				<label>子作用域中的samescope:{{samescope}}</label><input type="text" ng-model='samescope'>
+			</div>
+        </div>
+	</div>
+</div>

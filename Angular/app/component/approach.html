@@ -1,0 +1,103 @@
+<div id="page-wrapper" ng-controller="approachController">
+  <div class="row">
+      <div class="col-lg-12">
+          <h1 class="page-header">{{title}}</h1>
+      </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="panel panel-default">
+        <div class="panel-heading">推送方式列表 
+          <div class="btn-group">
+            <button type="button" class="btn btn-info dropdown-toggle" 
+                     data-toggle="dropdown">
+                     新增 
+            </button>
+            <ul class="dropdown-menu" role="menu">
+                     <li><button type="button" class="btn btn-outline" data-toggle="modal" data-target="#addPushSendApproach">极光推送方式</button></li>
+                     <li><button type="button" class="btn btn-outline" data-toggle="modal" data-target="#addSmsSendApproach">短信推送方式</button></li>
+                     <li><button type="button" class="btn btn-outline" data-toggle="modal" data-target="#addHttpSendApproach" >第三方http推送方式</button></li>
+            </ul>
+          </div>
+        </div>
+        <div class="panel-body">
+          <div class="dataTable_wrapper">
+            <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+              <thead>
+                <tr>
+                          <th>序号</th>
+                          <th>类型</th>
+                          <th>名称</th>
+                          <th>操作</th>
+                      </tr>
+              </thead>
+              <tbody>     
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row col-lg-12">
+    <p>angular的双向绑定实例：</p>
+    <!-- ng-click的事件函数没有参数时也要括号，否则注册无效，而vue不会 -->
+    <div class="form-group" ng-click="reComputeResult()">
+      <label class="checkbox-inline">
+        <input type="radio" name="optionsRadiosinline" id="optionsRadios1" value="option1" ng-model='redioValue' checked> 加
+      </label>
+      <label class="checkbox-inline">
+        <input type="radio" name="optionsRadiosinline" id="optionsRadios2" value="option2" ng-model='redioValue'> 减
+      </label>
+      <label class="checkbox-inline">
+        <input type="radio" name="optionsRadiosinline" id="optionsRadios3" value="option3" ng-model='redioValue'> 乘
+      </label>
+      <label class="checkbox-inline">
+        <input type="radio" name="optionsRadiosinline" id="optionsRadios4" value="option4" ng-model='redioValue'> 除
+      </label>
+    </div>
+    <div class="form-group">
+      <label for="firstname" class="col-sm-1 control-label">参数1</label>
+      <div class="col-sm-3">
+        <input type="number" class="form-control" id="firstname" ng-model='firstNum'>
+      </div>
+      <label for="lastname" class="col-sm-1 control-label">参数2</label>
+      <div class="col-sm-3">
+        <input type="number" class="form-control" id="lastname" ng-model='secondNum'>
+      </div>
+      <label class="col-sm-3 control-label">结果：{{computeResult}}</label>
+    </div>
+  </div>
+  <div class="row col-lg-12">
+    <p>ng-show:当为false时，相当于添加了一个css类(.ng-hide)到该标签，且这个类的display属性值为none</p>
+    <div class="form-group">
+      <label class="checkbox-inline">
+        <input type="radio" name="falsetrue" id="falsetrue1" value="1" ng-model='redioTrue'> true
+      </label>
+      <label class="checkbox-inline">
+        <input type="radio" name="falsetrue" id="falsetrue2" value="0" ng-model='redioTrue'> false
+      </label>
+    </div>
+    <div class="form-group" ng-show="redioTrue==0">
+      <label for="firstname" class="col-sm-3 control-label">ng-show:</label>
+      <div class="col-sm-3">
+        <input type="text" class="form-control" id="firstname" value="false" readonly>
+      </div>
+    </div>
+  </div>
+  <div class="row col-lg-12" ng-controller='approachChildController'>
+      <p class="row col-lg-12">AngularJS使用$on、$emit和$broadcast在作用域之间进行交互</p>
+      <p class="row col-lg-12">{{title}}</p>
+      <div class="form-group">
+        <label for="setfirstname" class="col-sm-1 control-label">设置父参数1</label>
+        <div class="col-sm-3">
+          <input type="number" class="form-control" id="setfirstname" ng-model='setfirstNum'>
+        </div>
+        <label for="setlastname" class="col-sm-1 control-label">设置父参数2</label>
+        <div class="col-sm-3">
+          <input type="number" class="form-control" id="setlastname" ng-model='setsecondNum'>
+        </div>
+        <button class="btn-default" ng-click="$emit('setNum',setfirstNum,setsecondNum)">设置</button>
+      </div>
+  </div>
+</div>
