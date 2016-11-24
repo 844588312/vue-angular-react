@@ -1,2 +1,3 @@
 Vue/dist/bin/*
 Angular/dist/bin/*
+Angular/node_modules/*
