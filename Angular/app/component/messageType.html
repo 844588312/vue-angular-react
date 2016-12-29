@@ -26,7 +26,13 @@
             </div>
         </div>
     </div>
+    <div compile="html">
+
+    </div>
     <div class="row">
-        <label for="validnum">数字有效性验证</label><input type="text" name="validnum" ng-model="validnum" ng-change="check(validnum)" maxlength="5" ngChange><span></span>
-    </div>12
+        <label for="validnum">自定义指令</label><input type="text" name="validnum" ngChange ng-model="validnum" ng-change="check(validnum)" maxlength="5" ><span></span>
+    </div>
+<!--     <div class="row">
+        <label for="fliter">过滤器的使用</label><input type="text" name="fliter" ng-model="myfliter|filter:fullNumber">
+    </div> -->
 </div>

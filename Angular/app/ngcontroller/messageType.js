@@ -3,15 +3,21 @@ module.exports = function(myApp) {
         $scope.title = "D";
         $scope.msgType=[{id:1,name:"push",option:'xxx'}];
         $scope.text="'Hello World!'";
+        $scope.html = '<p>mzz</p><input ng-blur="check()" ng-model="text"/>';
         $scope.check=function(validnum){
-
+            console.log("mzz hello");
+        }
+        $scope.fullNumber=function(input,parme1,parme2){
+            return input+'.00';
         }
     }).directive("ngChange",function(){
     	return {
             restrict:"A",
+            require:'ngModel',
             link: function (scope, iElement, iAttrs,ngController) {
                 var ele=iElement[0].nextElementSibling;
                 var valid=true;
+                console.log(ngController);
                 scope.$watch(iAttrs.ngModel, function (newVal,oldVal) {
                 	if(newVal==undefined){
                         valid=false;
@@ -51,5 +57,25 @@ module.exports = function(myApp) {
                 };
             }
     	};
-	})
+	}).directive('compile', function($compile) {
+      // directive factory creates a link function
+      return function(scope, element, attrs) {
+        scope.$watch(
+          function(scope) {
+             // watch the 'compile' expression for changes
+            return scope.$eval(attrs.compile);
+          },
+          function(value) {
+            // when the 'compile' expression changes
+            // assign it into the current DOM
+            element.html(value);
+            // compile the new DOM and link it to the current
+            // scope.
+            // NOTE: we only compile .childNodes so that
+            // we don't get into infinite loop compiling ourselves
+            $compile(element.contents())(scope);
+          }
+        );
+      };
+    });
 }
